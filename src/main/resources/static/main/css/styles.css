@@ -1,0 +1,21 @@
+.pics_in {
+	width:20px;
+	height:20px;
+}
+.pics_out {
+	width:64px;
+	height:64px;
+}
+.nums {
+	font-family: 'Arial-BoldMT', 'Arial Bold', 'Arial';
+	font-weight: 700;
+	font-style: normal;
+	font-size: 36px;
+	line-height: normal;
+}
+.txts {
+	font-family: 'MicrosoftYaHei', 'Microsoft YaHei';
+	font-weight: 400;
+	font-style: normal;
+	font-size: 14px;
+}

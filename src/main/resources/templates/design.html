@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>流程设计</title>
+    <link rel="stylesheet" type="text/css" href="/styles/css/skin1/all.css" />
+
+    <link rel="stylesheet" type="text/css" href="/styles/js/uploader/webuploader.css" />
+    <link rel="stylesheet" type="text/css" href="/styles/js/uploader/style.css" />
+    <link rel="stylesheet" type="text/css" href="/styles/css/default.css" />
+    <style type="text/css">
+        .title {
+            margin-bottom: 10px;
+        }
+
+        .dragitem {
+            border: 1px solid #ccc;
+            width: 50px;
+            height: 50px;
+            margin-bottom: 10px;
+        }
+
+        .targetarea {
+            border: 1px solid red;
+            height: 150px;
+        }
+
+        .proxy {
+            border: 1px solid #ccc;
+            width: 80px;
+            background: #fafafa;
+        }
+        /* 右键菜单样式 */
+        #contextmenu {
+            border: 1px solid #aaa;
+            border-bottom: 0;
+            background: #eee;
+            position: absolute;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: none;
+        }
+
+        #contextmenu li a {
+            display: block;
+            padding: 10px;
+            border-bottom: 1px solid #aaa;
+            cursor: pointer;
+        }
+
+        #contextmenu li a:hover {
+            background: #fff;
+        }
+        /*ul  li样式*/
+        ul {
+            padding: 0px;
+            margin: 0px;
+        }
+
+        /*  input {
+            width: 30px;
+        }  */
+    </style>
+    <style type="text/css">
+        .autocomplete-suggestions {
+            border: 1px solid #999;
+            background: #FFF;
+            overflow: auto;
+        }
+
+        .autocomplete-suggestion {
+            padding: 2px 5px;
+            white-space: nowrap;
+            overflow: hidden;
+        }
+
+        .autocomplete-selected {
+            background: #F0F0F0;
+        }
+
+        .autocomplete-suggestions strong {
+            font-weight: normal;
+            color: #3399FF;
+        }
+
+        .autocomplete-group {
+            padding: 2px 5px;
+        }
+
+        .autocomplete-group strong {
+            display: block;
+            border-bottom: 1px solid #000;
+        }
+    </style>
+</head>
+<body>
+<div data-role="ued-layout" data-rel="isLeftCollapse:'false'">
+    <div position="top" class="ued-head clearfix">
+        <div class="ued-logo" id="flow"></div>
+        <!--scrollpanel-->
+        <div class="ued-slidebox js_scrollpanel">
+            <!-- <span class="scrollPrev"></span>
+            <span class="scrollNext"></span> -->
+            <div class="ued-scrollWrap">
+                <ul class="js_scrollList ued-list-2 clearfix">
+                    <li>
+                        <a href="#" onclick="valid();">
+                            <img src="/styles/images/design/valid.png" alt="" />
+                            <span class="block">流程hPDL校验</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" onclick="lookxml()">
+                            <img src="/styles/images/design/xml.png" alt="" />
+                            <span class="block">流程hPDL</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" onclick="zoomOut()">
+                            <img src="/styles/images/design/zoom_out.png" alt="" />
+                            <span class="block">视图放大</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" onclick="zoomIn()">
+                            <img src="/styles/images/design/zoom_in.png" alt="" />
+                            <span class="block">视图缩小</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" onclick="reduction()">
+                            <img src="/styles/images/design/reductionview.png" alt="" />
+                            <span class="block">还原视图</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" onclick="bridpic()">
+                            <img src="/styles/images/design/bird's-eye.png" alt="" />
+                            <span class="block">鸟瞰</span>
+                        </a>
+                    </li>
+                    <!--                        <li>
+                        <a href="#">
+                            <img src="/styles/images/design/layout.png" alt="" />
+                            <span class="block">智能布局</span>
+                       </a>
+                   </li>
+                    <li>
+                        <a href="#">
+                            <img src="/styles/images/design/reduction.png" alt="" />
+                            <span class="block">布局还原</span>
+                       </a>
+                   </li> -->
+                    <li>
+                        <a href="#" onclick="upload();">
+                            <img src="/styles/images/design/import.png" alt="" />
+                            <span class="block">流程导入</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#" onclick="exportXML();">
+                            <img src="/styles/images/design/export.png" alt="" />
+                            <span class="block">流程导出</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" onclick="save();">
+                            <img src="/styles/images/design/save.png" alt="" />
+                            <span class="block">保存</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" onclick="saveQuit();">
+                            <img src="/styles/images/design/saveandout.png" alt="" />
+                            <span class="block">保存退出</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" onclick="closeDesign();">
+                            <img src="/styles/images/design/out.png" alt="" />
+                            <span class="block">退出</span>
+                        </a>
+                    </li>
+                    <!-- <li>
+                        <a href="#">
+                            <img src="/styles/images/design/help.png" alt="" />
+                            <span class="block">说明</span>
+                       </a>
+                   </li>  -->
+                </ul>
+            </div>
+        </div>
+        <!--ued-pannel end-->
+    </div>
+    <div position="left">
+        <div id="point" class="accordion-group-4" data-role="ued-accordion" data-rel="active:0,height:'fill',header:'h3.accordion-heading',contentBox:'div.accordion-body',collapsible:true">
+            <h3 class="accordion-heading on">
+                <i class="panel-icon icon-1"></i>
+                <a class="accordion-toggle" href="#" hidefocus="true">辅助节点</a>
+            </h3>
+            <div class="accordion-body" style="display: block;">
+                <ul class="ued-list">
+                    <li type="5">
+                        <img src="/styles/images/design/fz/fork.png" title="fork" />
+                        <span>fork</span>
+                    </li>
+                    <li type="4">
+                        <img src="/styles/images/design/fz/choose.png" title="choose" />
+                        <span>choose</span>
+                    </li>
+                    <li type="6">
+                        <img src="/styles/images/design/fz/join.png" title="join" />
+                        <span>join</span>
+                    </li>
+                    <li type="31">
+                        <img src="/styles/images/design/fz/childprocess.png" title="子流程" />
+                        <span>子流程</span>
+                    </li>
+                </ul>
+            </div>
+            <h3 class="accordion-heading">
+                <i class="panel-icon icon-2"></i>
+                <a class="accordion-toggle" href="#" hidefocus="true">固有组件</a>
+            </h3>
+            <div class="accordion-body" style="display: none">
+                <ul class="ued-list">
+                    <li type="3">
+                        <img src="/styles/images/design/jc/mr.png" title="mapreduce" />
+                        <span>mapreduce</span>
+                    </li>
+                    <li type="12">
+                        <img src="/styles/images/design/jc/pig.png" title="pig" />
+                        <span>pig</span>
+                    </li>
+                    <li type="1">
+                        <img src="/styles/images/design/jc/fs.png" title="fs" />
+                        <span>fs</span>
+                    </li>
+                    <li type="2">
+                        <img src="/styles/images/design/jc/java.png" title="java" />
+                        <span>java</span>
+                    </li>
+                    <li type="7">
+                        <img src="/styles/images/design/kz/email.png" title="email" />
+                        <span>email</span>
+                    </li>
+                    <li type="13">
+                        <img src="/styles/images/design/kz/shell.png" title="shell" />
+                        <span>shell</span>
+                    </li>
+                    <li type="14">
+                        <img src="/styles/images/design/kz/ssh.png" title="ssh" />
+                        <span>ssh</span>
+                    </li>
+                    <li type="9">
+                        <img src="/styles/images/design/kz/hive.png" title="hive" />
+                        <span>hive</span>
+                    </li>
+                    <li type="15">
+                        <img src="/styles/images/design/kz/hive2.png" title="hive2" />
+                        <span>hive2</span>
+                    </li>
+                    <li type="10">
+                        <img src="/styles/images/design/kz/sqoop.png" title="sqoop" />
+                        <span>sqoop</span>
+                    </li>
+                    <li type="16">
+                        <img src="/styles/images/design/kz/distcp.png" title="distcp" />
+                        <span>distcp</span>
+                    </li>
+                    <li type="17">
+                        <img src="/styles/images/design/kz/spark.png" title="spark" />
+                        <span>spark</span>
+                    </li>
+                </ul>
+            </div>
+            <h3 class="accordion-heading">
+                <i class="panel-icon icon-3"></i>
+                <a class="accordion-toggle" href="#" hidefocus="true">扩展组件</a>
+            </h3>
+            <div class="accordion-body" style="display: none">
+                <ul class="ued-list">
+                    <li type="8">
+                        <img src="/styles/images/design/kz/ftp.png" title="ftp" />
+                        <span>ftp</span>
+                    </li>
+                    <li type="impala">
+                        <img src="/styles/images/design/kz/impala.png" title="impala" />
+                        <span>impala</span>
+                    </li>
+                    <li type="gbase">
+                        <img src="/styles/images/design/kz/gbase.png" title="gbase" />
+                        <span>gbase</span>
+                    </li>
+                    <li type="33">
+                        <img src="/styles/images/design/kz/wash.png" title="wash" />
+                        <span>wash</span>
+                    </li>
+                    <li type="34">
+                        <img src="/styles/images/design/kz/es.png" title="esload" />
+                        <span>esload</span>
+                    </li>
+                    <li type="18">
+                        <img src="/styles/images/design/kz/storm.png" title="storm" />
+                        <span>storm</span>
+                    </li>
+                    <li type="11">
+                        <img src="/styles/images/design/kz/zip.png" title="zip" />
+                        <span>zip</span>
+                    </li>
+                    <li type="19">
+                        <img src="/styles/images/design/kz/encrypt.png" title="encrypt" />
+                        <span>encrypt</span>
+                    </li>
+                    <li type="20">
+                        <img src="/styles/images/design/kz/merge.png" title="merge" />
+                        <span>merge</span>
+                    </li>
+                    <li type="21">
+                        <img src="/styles/images/design/kz/split.png" title="split" />
+                        <span>split</span>
+                    </li>
+                    <li type="22">
+                        <img src="/styles/images/design/kz/sorting.png" title="sorting" />
+                        <span>sorting</span>
+                    </li>
+                    <li type="23">
+                        <img src="/styles/images/design/kz/md5.png" title="md5" />
+                        <span>md5</span>
+                    </li>
+                    <li type="24">
+                        <img src="/styles/images/design/kz/checkfile.png" title="checkfile" />
+                        <span>checkfile</span>
+                    </li>
+                    <li type="25">
+                        <img src="/styles/images/design/kz/webservice.png" title="webservice" />
+                        <span>webservice</span>
+                    </li>
+                    <li type="26">
+                        <img src="/styles/images/design/kz/http.png" title="http" />
+                        <span>http</span>
+                    </li>
+                    <li type="27">
+                        <img src="/styles/images/design/kz/sql.png" title="sql" />
+                        <span>sql</span>
+                    </li>
+                    <li type="28">
+                        <img src="/styles/images/design/kz/load.png" / title="load">
+                        <span>load</span>
+                    </li>
+                    <li type="29">
+                        <img src="/styles/images/design/kz/extract.png" title="extract" />
+                        <span>extract</span>
+                    </li>
+                    <li type="30">
+                        <img src="/styles/images/design/kz/procedure.png" title="procedure" />
+                        <span>procedure</span>
+                    </li>
+                    <li type="32">
+                        <img src="/styles/images/design/kz/custom.png" title="custom" />
+                        <span>自定义</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div position="center" class="relative" style="background: #fff; overflow: none;">
+        <div class="ued-crumbs">xx</div>
+        <div style="float: left; width: 0px; height: 0px;">
+            <div style="width: 1130px; height: 517px; display: none; background-color: #FFFFFF; border: 1px solid #e2e2e2;" id="operaDiv">
+                <!-- <pre>
+                        </pre> -->
+                <textarea id="xmlTxtAreaId" class="ued-test-textarea-100" rows="30" readonly style="width: 99%;"></textarea>
+            </div>
+            <center>
+                <canvas width="1100" height="507px" id="canvas" style="background-color: #FFFFFF; border: 0px solid #e2e2e2;">
+                </canvas>
+            </center>
+        </div>
+        <div style="clear: both"></div>
+    </div>
+
+</div>
+
+<ul id="contextmenu" style="display: none;">
+    <li>
+        <a onclick="aclick('delete');">删除该节点</a>
+    </li>
+    <li>
+        <a onclick="aclick('rename');">重命名</a>
+    </li>
+    <li>
+        <a onclick="aclick('retry');">重做与安全凭证设置</a>
+    </li>
+</ul>
+
+<div id="uploader" class="wu-example" style="position: absolute; left: -1000px; top: 50%; width: 400px; height: 200px; margin-left: -300px; margin-top: -200px; border: 1px solid rgb(136, 136, 136); background-color: rgb(238, 221, 255); text-align: center;">
+    <div id="thelist" class="uploader-list"></div>
+    <div class="btns">
+        <div id="picker" class="webuploader-container">
+            <div class="webuploader-pick">选择文件</div>
+            <div id="rt_rt_19qn9q6p017inchiq8cu7m18881" style="position: absolute; top: 0px; left: 0px; width: 88px; height: 34px; overflow: hidden; bottom: auto; right: auto;">
+                <input type="file" name="file" class="webuploader-element-invisible" multiple="multiple" />
+                <label style="opacity: 0; width: 100%; height: 100%; display: block; cursor: pointer; background: rgb(255, 255, 255);"> </label>
+            </div>
+        </div>
+        <button id="ctlBtn" class="btn btn-default">开始上传</button>
+        <button id="createFlowBtn" class="btn btn-default">生成流程</button>
+        <input type="hidden" id="idTmpFile"></input>
+    </div>
+</div>
+
+<textarea id="jtopo_textfield" onkeydown="if(event.keyCode==13)this.blur();" style="display: none; width: 60px; position: absolute; color: black;"></textarea>
+<input type="hidden" value='11' id="taskId" />
+<input type="hidden" value='11' id="platformId" />
+<input type="hidden" value='11' id="flowjson" />
+<input type="hidden" value='11' id="confCredential_name" />
+<!--右键菜单-->
+<div id="rightmenu" style="display: none;"></div>
+<input type="text" style="display: none;" value="" class="input-1c input-1c-6" id="buttype" />
+
+<div id="retryDiv" style="display: none; width: 200px; position: absolute; color: black;">
+    最大重做次数：
+    <input type="number" min="0" max="10" value="0" id="retry_num" />
+    <br /> 重做间隔：
+    <input type="number" min="1" max="999" value="10" id="retry_int" />
+    <br /> 安全凭证：
+    <input type="text" value="" id="cred" />
+    <br />
+    <a class="btn-blue" onclick="retryOk();">确定</a>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a class="btn-blue" onclick="$('#retryDiv').hide();">取消</a>
+</div>
+
+<script type="text/javascript" src="/styles/js/jquery-1.7.2.min.js"></script>
+
+<script type="text/javascript" src="/styles/js/sysLayout.js"></script>
+<script type="text/javascript" src="/styles/js/accordion.js"></script>
+<script type="text/javascript" src="/styles/js/layer/layer.js"></script>
+<!-- <script type="text/javascript" src="/styles/js/jtopo/jtopo-min.js"></script> -->
+<script type="text/javascript" src="/styles/js/jtopo/jtopo_debug.js"></script>
+<script type="text/javascript" src="/styles/js/uploader/upload.js"></script>
+<script type="text/javascript" src="/styles/js/uploader/webuploader.js"></script>
+
+<script type="text/javascript" src="/design/design.js"></script>
+<script type="text/javascript" src="/styles/js/autocomplate.min.js"></script>
+<script type="text/javascript" src="/styles/js/dialog.js"></script>
+<script type="text/javascript" src="/styles/js/layer/layer.js"></script>
+<script type="text/javascript" src="/styles/js/juicer-min.js"></script>
+<#include "actions.html"/>
+</body>
+</html>

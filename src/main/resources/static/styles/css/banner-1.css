@@ -1,0 +1,37 @@
+
+#banner{position:relative;top:0px;width:100%;height:100%;background-color:#0063c8;color:#fff;overflow:hidden; font-family:"Microsoft YaHei", Arial, SimSun;}
+#banner a{color:#fff;}
+
+
+#sub-nav{z-index:11;position:absolute;bottom:10px;width:120px; right:10%;}
+#sub-nav .sub-nav-wrap{width:155px;overflow:hidden;margin:auto;}
+#sub-nav ul{width:155px;}
+#sub-nav ul li{float:left; margin:0 8px;}
+#sub-nav ul li a{display:block;width:14px;height:14px;color:#fff; background:#9aa3b2;}
+#sub-nav ul li a:hover,
+#sub-nav ul li a.active{background-color:#328ccf;}
+
+#banner .bg{width:100%;height:100%;}
+#banner .bg li{opacity:0;position:absolute;top:0;width:100%;height:500px;background-repeat:no-repeat; background-position:center center;}
+#banner .bg li.banner-item-1{background-image:url(../images/banner-iten-1.png); background-color:#314361;}
+#banner .bg li.banner-item-2{background-image:url(../images/banner-item-2.png); background-color:#1a74b7;}
+#banner .bg li.banner-item-3{background-image: url(../images/pic-publish/banner-3-4.png); background-position:right bottom; background-color:#002753;}
+#banner .bg li.banner-item-4{background-image:url(../images/pic-publish/banner-4-4.png);background-position:right bottom;  background-color:#012d5f;}
+#banner .bg li.banner-item-5{background-image:url(../images/pic-publish/banner-5-4.png);background-position:right bottom;  background-color:#09236e;}
+
+#banner .pr-info{z-index:10;position:relative;width:100%; height:500px;}
+#banner .pr-info ul{width:1024px;margin:auto; height:100%;}
+#banner .pr-info li.b{width:980px;position:absolute;top:0;}
+#banner .pr-info li .i-s,
+#banner .pr-info li .i-o{width:60%;position:absolute;top:0;opacity:0;display:none;}
+#banner .pr-info li .i-s{ left:0; top:50px;}
+#banner .pr-info li .i-o{zoom:1; width:40%; right:0;}
+#banner .pr-info .i-s h2{font-size:60px;line-height:1.5; font-weight:500; color:#fff;}
+#banner .pr-info .i-s p{font-size:36px;line-height:1.5; color:#b4caef;}
+#banner .pr-info .i-s .button a {font-size: 30px; display: inline-block; width:240px; text-align:center; line-height:66px; border:1px solid #fff; background:none; border-radius:3px; text-decoration:none;}
+
+#banner .bg li.banner-item-1,
+#banner .pr-info li.banner-item-1 .i-s,
+#banner .pr-info li.banner-item-1 .i-o{opacity:1;display:block;}
+
+

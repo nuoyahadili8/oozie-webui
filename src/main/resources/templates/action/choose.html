@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+</head>
+
+<body>
+	<div data-role="ued-dialog" class="ued-dialog" id="choose_div" style="width: 800px;">
+    <div class="dialog-header">
+        <h3>分支条件配置</h3>
+        <span class="dialog-tool">
+            <a title="关闭" class="dialog-close">X</a>
+        </span>
+    </div>
+    <div class="dialog-con pdl-20 pdr-20">
+        <table border="0" width="100%" cellpadding="0" cellspacing="0" id="choose_table"
+			class="table-f2 mgb-20">
+		</table>
+        <div class="pd-10 tc">
+            <button type="button" class="ued-button-2 mgr-25" onclick="htmltojson(this);">确定</button>
+            <button type="button" class="ued-button-3 dialog-close">取消</button>
+        </div>
+    </div>
+</div>
+	<script id="choose_tpl" type="text/template">
+        (@each list as it,index)
+            <tr>
+				<th>指向：</th>
+				<td width="10%">$(it.name)</td>
+				<td width="15%"><label><input type="radio" id="defaultCase$(index)" value="$(index)" name="defaultCase" onclick="radioClick(this);"></input>默认分支</label></td>
+				<th>分支条件:</th>
+				<td width="70%"><input id="case$(index)" type="text" value="" class="input-1c input-1c-1" name="case$(index)"></input></td>
+			</tr>
+        (@/each)
+	</script>
+	<script type="text/javascript">
+		
+		function initChoose(et){
+			var outlink = et.outLinks;
+			if(outlink==null || outlink.length<2){
+				layer.alert("请配置至少两个分支！", {
+					skin : 'layer-ext-moon'
+				});
+				return false;
+			}
+			var caseNames = new Array();
+			for (var i=0;i<outlink.length;i++){
+				var out = outlink[i];
+				var mp= new Object();
+				mp.name=out.nodeZ.text;
+				caseNames.push(mp);
+			}
+			var data = new Object();
+			data.list=caseNames;
+			
+			juicer.set({
+			    'tag::operationOpen': '(@',
+			    'tag::operationClose': ')',
+			    'tag::interpolateOpen': '$(',
+			    'tag::interpolateClose': ')',
+			    'tag::noneencodeOpen': '$$(',
+			    'tag::noneencodeClose': ')',
+			    'tag::commentOpen': '(#',
+			    'tag::commentClose': ')'
+			});
+			
+			var choose_tpl = $("#choose_tpl").html();
+			var choose_compiled_tpl = juicer(choose_tpl);
+			
+			var html_choose = choose_compiled_tpl.render(data);
+			$("#choose_table").empty();
+			$("#choose_table").html(html_choose);
+			
+			var attribute =et.attribute;
+			if(attribute!=null){
+				var defaultCase = attribute.defaultCase;
+				if(defaultCase!=null){
+					$("#case"+defaultCase).attr("disabled","disabled");
+				}
+			}
+			return true;
+		}
+		
+		function radioClick(obj){
+			$("input[name^='case']").each(function(i){
+				$(this).removeAttr("disabled");
+			});
+			$("#case"+obj.value).val("");
+			$("#case"+obj.value).attr("disabled","disabled");
+		}
+		
+	</script>	
+</body>

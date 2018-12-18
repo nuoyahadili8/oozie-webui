@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+</head>
+
+<body>
+<div data-role="ued-dialog" class="ued-dialog" id="spark_div" style="width: 600px;">
+    <div class="dialog-header">
+        <h3>Spark配置</h3>
+        <span class="dialog-tool">
+            <a title="关闭" class="dialog-close">X</a>
+        </span>
+    </div>
+    <div class="dialog-con pdl-20 pdr-20">
+        <table border="0" width="100%" cellpadding="0" cellspacing="0"
+			class="table-f2 mgb-20">
+			<tr>
+				<th><em class="font-red">*</em>MASTER Url:</th>
+				<td  colspan="3"><input type="text" value="" class="input-1c input-1c-1"
+					name="master" id="master"></input></td>
+			</tr>
+			<tr>
+				<th><em class="font-red">*</em>Spark 名称:</th>
+				<td><input type="text" value="" class="input-1c input-1c-6"
+					name="name" id="name"></input></td>
+				<th>Spark模式:</th>
+				<td><select name="mode" class="input-1c"
+					style="position: relative; height: 25px; width:152px; line-height: 25px;">
+						<option value="cluster" selected="selected">cluster</option>
+						<option value="client">client</option>
+				</select></td>
+			</tr>
+			<tr>
+				<th><em class="font-red">*</em>JAR包:</th>
+				<td colspan="3"><input type="text" value="" class="input-1c input-1c-1"
+					name="jar" id="spark_jar"></input></td>
+			</tr>
+			<tr>
+				<th>JAVA类名:</th>
+				<td colspan="3"><input type="text" value="" class="input-1c input-1c-1"
+					name="class"></input></td>
+			</tr>
+			<tr>
+				<th>运行参数:</th>
+				<td colspan="3"><textarea class="ued-test-textarea" rows="3" cols="70"
+					name="spark-opts"></textarea></td>
+			</tr>
+			<tr>
+				<th>自定义参数:</th>
+				<td colspan="3"><textarea class="ued-test-textarea" rows="3" cols="70"
+						name="arg"></textarea></td>
+			</tr>
+			<tr>
+				<th>预先删除路径:</th>
+				<td colspan="3"><textarea class="ued-test-textarea" name="delete"
+						placeholder='多条内容请用";"隔开' rows="3"></textarea></td>
+			</tr>
+			<tr>
+				<th>预先创建路径:</th>
+				<td colspan="3"><textarea class="ued-test-textarea" name="mkdir"
+						placeholder='多条内容请用";"隔开' rows="3" cols="70"></textarea></td>
+			</tr>
+			<tr>
+				<th><em class="font-red">*</em>使用队列:</th>
+				<td colspan="3"><input id="idFormQueue_spark" readonly="readonly" type="text" value=""
+					class="input-1c input-1c-1" name="queue"></input></td>
+			</tr>
+		</table>
+        <div class="pd-10 tc">
+            <button type="button" class="ued-button-2 mgr-25" onclick="saveSpark(this);">确定</button>
+            <button type="button" class="ued-button-3 dialog-close">取消</button>
+        </div>
+    </div>
+</div>
+	<script type="text/javascript" src="/styles/js/autocomplate.min.js"></script>
+    <script type="text/javascript" src="/styles/js/codemirror/ace.js" charset="utf-8"></script>
+    <script type="text/javascript" src="/styles/js/codemirror/theme-tomorrow.js"  charset="utf-8"></script>
+    <script type="text/javascript" src="/styles/js/codemirror/theme-xcode.js"  charset="utf-8"></script>    
+    <script type="text/javascript" src="/design/action/spark.js"></script>
+</body>

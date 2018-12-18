@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">
+.table-f2 th, .table-f2 td {
+	padding: 1px 1px;
+	color: #4e4e4e;
+}
+</style>
+</head>
+
+<body>
+	<div data-role="ued-dialog" class="ued-dialog" id="mr_div"
+		style="width: 850px;">
+		<div class="dialog-header">
+			<h3>MapReduce配置</h3>
+			<span class="dialog-tool"> <a title="关闭" class="dialog-close">X</a>
+			</span>
+		</div>
+		<div class="dialog-con pdl-20 pdr-20">
+			<table border="0" width="100%" cellpadding="0" cellspacing="0"
+				class="table-f2 mgb-20">
+				<tr>
+					<th>map类型:</th>
+					<td colspan="3" height="35">&nbsp;&nbsp;<input type="radio"
+						value="0" name="mapType" onclick="typeClick('0');" checked>Map/Reduce</input>
+						<input type="radio" value="1" name="mapType"
+						onclick="typeClick('1');">Streaming</input> <input type="radio"
+						value="2" name="mapType" onclick="typeClick('2');">Pipes</input>
+					</td>
+				</tr>
+				<tr id="job_xml">
+					<th>job-xml:</th>
+					<td colspan="3"><input type="text" value=""class="input-1c input-1c-1" name="job-xml"></input></td>
+				</tr>
+				<tr id="job_inputformat">
+					<th>输入格式化类:</th>
+					<td colspan="3"><input type="text" value=""
+						class="input-1c input-1c-1" name="job.input.format.class"></input></td>
+				</tr>
+				<tr id="job_outputformat">
+					<th>输出格式化类:</th>
+					<td colspan="3"><input type="text" value=""
+						class="input-1c input-1c-1" name="job.output.format.class"></input></td>
+				</tr>
+				<tr id="map_mapper">
+					<th>map类:</th>
+					<td colspan="3"><input type="text" value=""
+						class="input-1c input-1c-1" name="mapred.mapper.class"></input></td>
+				</tr>
+				<tr id="map_output_key">
+					<th>map输出key类:</th>
+					<td colspan="3"><input type="text" value=""
+						class="input-1c input-1c-1" name="map.output.key.class"></input></td>
+				</tr>
+				<tr id="map_output_value">
+					<th>map输出value类:</th>
+					<td colspan="3"><input type="text" value=""
+						class="input-1c input-1c-1" name="map.output.value.class"></input></td>
+				</tr>
+				<tr id="map_combine">
+					<th>combine类:</th>
+					<td colspan="3"><input type="text" value=""
+						class="input-1c input-1c-1" name="mapred.combine.class"></input></td>
+				</tr>
+				<tr id="map_reduce">
+					<th>reduce类:</th>
+					<td colspan="3"><input type="text" value=""
+						class="input-1c input-1c-1" name="mapred.reducer.class"></input></td>
+				</tr>
+				<tr id="tr_mapper_s" style="display: none;">
+					<th>mapper脚本:</th>
+					<td colspan="3"><input type="text" value=""
+						class="input-1c input-1c-1" name="mapper.script"></input></td>
+				</tr>
+				<tr id="tr_reduce_s" style="display: none;">
+					<th>reduce脚本:</th>
+					<td colspan="3"><input type="text" value=""
+						class="input-1c input-1c-1" name="reduce.script"></input></td>
+				</tr>
+				<tr id="tr_reader" style="display: none;">
+					<th>输入Reader:</th>
+					<td colspan="3"><input type="text" value=""
+						class="input-1c input-1c-1" name="record.reader"></input></td>
+				</tr>
+				<tr id="tr_reader_map" style="display: none;">
+					<th>输入Reader映射:</th>
+					<td colspan="3"><textarea class="ued-test-textarea"
+							name="record.reader.map" title='多条内容请用";"隔开' rows="1" cols="80"></textarea></td>
+				</tr>
+				<tr id="tr_env" style="display: none;">
+					<th>环境变量:</th>
+					<td colspan="3"><textarea class="ued-test-textarea"
+							name="streaming.env" title='多条内容请用";"隔开' rows="1" cols="80"></textarea></td>
+				</tr>
+
+				<tr id="tr_mapper_p" style="display: none;">
+					<th>map:</th>
+					<td colspan="3"><input type="text" value=""
+						class="input-1c input-1c-1" name="pipes.map"></input></td>
+				</tr>
+				<tr id="tr_reduce_p" style="display: none;">
+					<th>reduce:</th>
+					<td colspan="3"><input type="text" value=""
+						class="input-1c input-1c-1" name="pipes.reduce"></input></td>
+				</tr>
+				<tr id="tr_inputformat_p" style="display: none;">
+					<th>输入格式:</th>
+					<td colspan="3"><input type="text" value=""
+						class="input-1c input-1c-1" name="pipes.inputformat"></input></td>
+				</tr>
+				<tr id="tr_partitioner_p" style="display: none;">
+					<th>partitioner:</th>
+					<td colspan="3"><input type="text" value=""
+						class="input-1c input-1c-1" name="pipes.partitioner"></input></td>
+				</tr>
+				<tr id="tr_writer_p" style="display: none;">
+					<th>writer:</th>
+					<td colspan="3"><input type="text" value=""
+						class="input-1c input-1c-1" name="pipes.writer"></input></td>
+				</tr>
+				<tr id="tr_program_p" style="display: none;">
+					<th>program:</th>
+					<td colspan="3"><input type="text" value=""
+						class="input-1c input-1c-1" name="pipes.program"></input></td>
+				</tr>
+				<tr id="job_output_key">
+					<th>作业输出key类:</th>
+					<td colspan="3"><input type="text" value=""
+						class="input-1c input-1c-1" name="job.output.key.class"></input></td>
+				</tr>
+				<tr id="job_output_value">
+					<th>作业输出value类:</th>
+					<td colspan="3"><input type="text" value=""
+						class="input-1c input-1c-1" name="job.output.value.class"></input></td>
+				</tr>
+				<tr id="map_memo">
+					<th>map内存大小(M):</th>
+					<td><input type="text" value="" class="input-1c input-1c-6"
+						name="mapred.map.child.java.opts"></input></td>
+					<th>reduce内存大小(M):</th>
+					<td><input type="text" value="" class="input-1c input-1c-6"
+						name="mapred.reduce.child.java.opts"></input></td>
+				</tr>
+				<tr>
+					<th>map任务数:</th>
+					<td><input type="text" value="" class="input-1c input-1c-6"
+						name="mapred.map.tasks"></input></td>
+					<th>reduce任务数:</th>
+					<td><input type="text" value="" class="input-1c input-1c-6"
+						name="mapred.reduce.tasks"></input></td>
+				</tr>
+				<tr>
+					<th>mapreduce<br />输入路径:
+					</th>
+					<td colspan="3"><input type="text" value=""
+						class="input-1c input-1c-1" name="mapred.input.dir"></input></td>
+				</tr>
+				<tr>
+					<th>mapreduce<br />输出路径:
+					</th>
+					<td colspan="3"><input type="text" value=""
+						class="input-1c input-1c-1" name="mapred.output.dir"></input></td>
+				</tr>
+				<tr>
+					<th>预先删除路径:</th>
+					<td colspan="3"><textarea class="ued-test-textarea"
+							name="delete" title='多条内容请用";"隔开' rows="1" cols="80"></textarea></td>
+				</tr>
+				<tr>
+					<th>预先创建路径:</th>
+					<td colspan="3"><textarea class="ued-test-textarea"
+							name="mkdir" title='多条内容请用";"隔开' rows="1" cols="80"></textarea></td>
+				</tr>
+				<tr>
+					<th>引用文件包:</th>
+					<td colspan="3"><textarea class="ued-test-textarea"
+							name="file" title='多条内容请用";"隔开' rows="1" cols="80"></textarea></td>
+				</tr>
+				<tr>
+					<th>执行Jar文件:</th>
+					<td colspan="3"><textarea class="ued-test-textarea"
+							name="archive" id="mapreduce_jar" title='多条内容请用";"隔开' rows="1" cols="80"></textarea></td>
+				</tr>
+				<tr>
+					<th>使用队列:</th>
+					<td><input type="text" value="" class="input-1c input-1c-1"
+						name="queue"></input></td>
+					<th>map/reduce接口版本:</th>
+					<td><select name="mrversion" class="input-1c"
+						style="position: relative; height: 25px; width: 152px; line-height: 25px; top: 3px;">
+							<option value="old">老接口</option>
+							<option value="new">新接口</option>
+					</select></td>
+				</tr>
+				<tr>
+					<th>其它map/reduce参数:</th>
+					<td colspan="3"><textarea class="ued-test-textarea"
+							name="moreParas" title='多条内容请用";"隔开,参数Key与Value之间用"="隔开' rows="2"
+							cols="80"></textarea></td>
+				</tr>
+			</table>
+			<div class="pd-10 tc">
+				<button type="button" class="ued-button-2 mgr-25" onclick="htmltojson(this);">确定</button>
+				<button type="button" class="ued-button-3 dialog-close">取消</button>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript" src="/styles/js/autocomplate.min.js"></script>
+    <script type="text/javascript" src="/styles/js/codemirror/ace.js" charset="utf-8"></script>
+    <script type="text/javascript" src="/styles/js/codemirror/theme-tomorrow.js"  charset="utf-8"></script>
+    <script type="text/javascript" src="/styles/js/codemirror/theme-xcode.js"  charset="utf-8"></script>    
+    <script type="text/javascript" src="/design/action/mapreduce.js"></script>
+	<script type="text/javascript">
+		function typeClick(type) {
+			if (type == '0') {
+				$("#map_mapper").show();
+				$("#map_combine").show();
+				$("#map_reduce").show();
+				$("#map_output_key").show();
+				$("#map_output_value").show();
+				$("#job_output_key").show();
+				$("#job_output_value").show();
+				$("#map_memo").show();
+
+				$("#tr_mapper_s").hide();
+				$("#tr_reduce_s").hide();
+				$("#tr_reader").hide();
+				$("#tr_reader_map").hide();
+				$("#tr_env").hide();
+
+				$("#tr_mapper_p").hide();
+				$("#tr_reduce_p").hide();
+				$("#tr_inputformat_p").hide();
+				$("#tr_partitioner_p").hide();
+				$("#tr_writer_p").hide();
+				$("#tr_program_p").hide();
+			} else if (type == '1') {
+				$("#map_mapper").hide();
+				$("#map_combine").hide();
+				$("#map_reduce").hide();
+				$("#map_output_key").show();
+				$("#map_output_value").show();
+				$("#job_output_key").show();
+				$("#job_output_value").show();
+				$("#map_memo").show();
+
+				$("#tr_mapper_s").show();
+				$("#tr_reduce_s").show();
+				$("#tr_reader").show();
+				$("#tr_reader_map").show();
+				$("#tr_env").show();
+
+				$("#tr_mapper_p").hide();
+				$("#tr_reduce_p").hide();
+				$("#tr_inputformat_p").hide();
+				$("#tr_partitioner_p").hide();
+				$("#tr_writer_p").hide();
+				$("#tr_program_p").hide();
+			} else if (type == '2') {
+				$("#map_mapper").hide();
+				$("#map_combine").hide();
+				$("#map_reduce").hide();
+				$("#map_output_key").hide();
+				$("#map_output_value").hide();
+				$("#job_output_key").hide();
+				$("#job_output_value").hide();
+				$("#map_memo").show();
+
+				$("#tr_mapper_s").hide();
+				$("#tr_reduce_s").hide();
+				$("#tr_reader").hide();
+				$("#tr_reader_map").hide();
+				$("#tr_env").hide();
+
+				$("#tr_mapper_p").show();
+				$("#tr_reduce_p").show();
+				$("#tr_inputformat_p").show();
+				$("#tr_partitioner_p").show();
+				$("#tr_writer_p").show();
+				$("#tr_program_p").show();
+			}
+		}
+	</script>
+
+</body>

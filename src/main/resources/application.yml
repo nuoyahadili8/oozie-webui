@@ -1,0 +1,15 @@
+#环境配置
+spring:
+  profiles:
+    active: dev
+  #Freemarker 配置
+  freemarker:
+    template-loader-path: classpath:/templates/
+    suffix: .html
+  #静态资源路径
+  resources:
+    static-locations: classpath:/templates/,classpath:/static/
+
+logging:
+  level:
+    com.teradata.web: DEBUG

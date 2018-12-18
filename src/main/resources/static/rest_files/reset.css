@@ -1,0 +1,30 @@
+@charset "utf-8";
+body,dl,dd,ul,ol,figure ,h1,h2,h3,h4,h5,h6,p,blockquote,
+form ,fieldset,legend ,input,button,select,textarea {margin: 0;padding: 0;}
+body{font-family:"microsoft yahei","Hiragino Sans GB",sans-serif;}
+article,aside,details,figcaption,figure,footer,header,hgroup,nav,section {display: block;}
+abbr[title],dfn[title] {border-bottom: 1px dotted;cursor:help;}
+input[type="checked"],input[type="button"],input[type="submit"],input[type="reset"],input[type="text"],textarea,input[type="search"]{-webkit-appearance:none;}
+.clearfix {zoom: 1;}
+.clearfix:after {clear: both; content: '';display: block;}
+
+.clear{zoom:1;}
+.clear:after{content:''; display:block; clear:both;}
+
+audio[controls],canvas,video{display: inline-block;*display: inline;*zoom: 1;}
+img,fieldset {border: 0 none;}
+img {vertical-align: top;}
+a{text-decoration: none; outline: 0 none;}
+/*a:hover{text-decoration: underline;}*/
+.hidden {border: 0 !important;clip: rect(1px 1px 1px 1px);clip: rect(1px,1px,1px,1px);height: 1px !important;margin: -1px;overflow: hidden;padding: 0 !important;position: absolute !important;width: 1px;}
+nav,ul,ol,li {list-style: none;}
+fieldset {ine-height: 1;}
+legend {*margin-left: -7px;}
+button,input,select,textarea {vertical-align: baseline;*vertical-align: middle;font-family:Tahoma,Arial,Helvetica,"microsoft yahei","Hiragino Sans GB",Simsun,\5b8b\4f53,sans-serif;}
+button,input[type="button"], input[type="reset"], input[type="submit"],.btn{cursor: pointer-webkit-appearance: button;}
+input[type="checkbox"],input[type="radio"] {box-sizing: border-box;}
+input[type="checkbox"] {vertical-align: bottom;*vertical-align: baseline;}
+input[type="radio"] {vertical-align: text-bottom;}
+textarea {overflow: auto;vertical-align: top;}
+table {border-collapse: collapse;border-spacing: 0;}
+
