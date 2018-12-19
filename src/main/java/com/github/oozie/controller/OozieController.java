@@ -1,6 +1,7 @@
 package com.github.oozie.controller;
 
 import com.github.oozie.service.IWorkflowService;
+import com.github.oozie.vo.TaskVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -8,6 +9,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.OutputStream;
 
 /**
  * @Project:
@@ -75,6 +78,41 @@ public class OozieController {
             validStr = "流程校验异常：" + validStr;
         }
         return validStr;
+    }
+
+
+    @RequestMapping("exportXML")
+    public void exportXML(HttpServletRequest request, HttpServletResponse response) {
+        String flowJson=request.getParameter("resultjson");
+        System.out.println(flowJson);
+        String flowXml = workflowService.workflowJsonToXml("11", flowJson);
+        System.out.println(flowXml);
+        flowXml.getBytes();
+
+
+        response.setContentType("text/plain");
+        response.setHeader("Location", "workflow.xml");
+        response.reset();
+        response.setHeader("Cache-Control", "max-age=0");
+        response.setHeader("Content-Disposition", "attachment; filename=workflow.xml");
+        OutputStream fos = null;
+        try{
+            fos = response.getOutputStream();
+            int bytesRead = 0;
+            byte[] buffer = new byte[5 * 1024];
+            byte[] contentInBytes = flowXml.getBytes();
+            fos.write(contentInBytes);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if (fos != null){
+                try {
+                    fos.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
     }
 
 }

@@ -1261,7 +1261,7 @@ function exportXML() {// 文件下载
 	form.attr("style", "display:none");
 	form.attr("target", "");
 	form.attr("method", "post");
-	form.attr("action", "../workflow/exportXML");
+	form.attr("action", "/oozie/exportXML");
 	var input1 = $("<input>");
 	input1.attr("type", "hidden");
 	input1.attr("name", "data");
