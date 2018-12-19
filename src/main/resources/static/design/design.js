@@ -1247,11 +1247,11 @@ function closeDesign() {
 	// 先刷新设计页面
 	// parent.iframePage.window.query();
 
-	parent.refreshActive();
+	// parent.refreshActive();
 
 	// 当你在iframe页面关闭自身时
-	var index = parent.layer.getFrameIndex(window.name); // 先得到当前iframe层的索引
-	parent.layer.close(index); // 再执行关闭
+	// var index = parent.layer.getFrameIndex(window.name); // 先得到当前iframe层的索引
+	// parent.layer.close(index); // 再执行关闭
 }
 
 function exportXML() {// 文件下载
