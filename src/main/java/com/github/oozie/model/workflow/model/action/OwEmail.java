@@ -2,7 +2,7 @@ package com.github.oozie.model.workflow.model.action;
 
 import com.github.oozie.model.workflow.design.FlowNode;
 import com.github.oozie.model.workflow.model.OwActionNode;
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.dom4j.Element;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;

@@ -6,7 +6,7 @@ import java.util.List;
 import com.github.oozie.model.workflow.model.help.OwConfiguration;
 import com.github.oozie.model.workflow.model.help.OwProperty;
 import com.github.oozie.vo.GlobalVo;
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.dom4j.Element;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 import com.thoughtworks.xstream.annotations.XStreamImplicit;

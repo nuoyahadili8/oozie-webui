@@ -84,6 +84,7 @@ $(document).ready(function(e) {
 
 	var scene = new JTopo.Scene();
 	allscene = scene;
+    //allscene.background = '/styles/images/design/bg.png';
 	allstage.add(scene);
 	allscene.alpha = 1;
 	// var flow_json = $("#flowjson").val();
@@ -159,6 +160,7 @@ function setfontsize() {
 	for (var i = 0; i < ele.length; i++) {
 		if (ele[i].elementType == 'node') {
 			ele[i].font = fontstr;
+			ele[i].fontColor = "#fff";
 		}
 	}
 }
@@ -637,7 +639,7 @@ function valid() {
 	var taskId = $("#taskId").val();
 	$.ajax({
 		type : "POST",
-		url : '../workflow/validFlow',
+		url : '/oozie/validFlow',
 		data : {
 			flowJson : resultjson,
 			date : new Date(),

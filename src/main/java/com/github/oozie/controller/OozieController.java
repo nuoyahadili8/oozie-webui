@@ -1,12 +1,10 @@
 package com.github.oozie.controller;
 
 import com.github.oozie.service.IWorkflowService;
-import com.github.oozie.vo.TaskVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -58,4 +56,25 @@ public class OozieController {
         // flowXml = HtmlUtils.htmlshow(flowXml);
         return flowXml;
     }
+
+    @RequestMapping("/validFlow")
+    @ResponseBody
+    public String validFlow(HttpServletRequest request){
+        String flowJson = request.getParameter("flowJson");
+
+        String validStr = null;
+        try {
+            validStr = workflowService.validJson("xx",flowJson);
+        } catch (Exception e) {
+            e.printStackTrace();
+            validStr = e.getMessage();
+        }
+        if (validStr == null) {
+            validStr = "流程校验通过！";
+        } else {
+            validStr = "流程校验异常：" + validStr;
+        }
+        return validStr;
+    }
+
 }

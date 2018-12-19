@@ -12,4 +12,6 @@ package com.github.oozie.service;
 public interface IWorkflowService {
 
     String workflowJsonToXml(String flowName, String flowJson);
+
+    String validJson(String flowName,String flowJson);
 }
