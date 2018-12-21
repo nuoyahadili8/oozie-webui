@@ -84,7 +84,7 @@ $(document).ready(function(e) {
 
 	var scene = new JTopo.Scene();
 	allscene = scene;
-    //allscene.background = '/styles/images/design/bg.png';
+    allscene.background = '/styles/images/design/bg1.png';
 	allstage.add(scene);
 	allscene.alpha = 1;
 	// var flow_json = $("#flowjson").val();
